@@ -1,9 +1,20 @@
 import React from "react";
-import Directory from "./components/directory/directory";
+import Home from "./routes/home/home";
+import { Routes , Route } from "react-router-dom"
+import Navigation from "./routes/navigation/navigation";
+import SignIn from "./routes/sign-in/singn-in";
+
+const Shop = () => <h3>Hello shop</h3>
 
 const App = () => {
   return (
-    <Directory/>
+    <Routes>
+      <Route path="/" element={<Navigation/>}>
+        <Route index={true} element={<Home/>} />
+        <Route path="shop" element={<Shop/>} />
+        <Route path="sign-in" element={<SignIn/>} />
+      </Route>
+    </Routes>
   );
 };
 export default App;
