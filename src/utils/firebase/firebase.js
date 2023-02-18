@@ -6,6 +6,8 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -74,3 +76,11 @@ export const signInUserWithEmailAndPassword = async ({ email, password }) => {
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
 };
+
+export const signOutUser = async () => {
+  return await signOut();
+};
+
+// like a socket it keep on listening to the authentication activity
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
