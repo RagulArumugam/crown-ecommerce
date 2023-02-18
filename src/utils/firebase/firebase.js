@@ -78,7 +78,7 @@ export const signInUserWithEmailAndPassword = async ({ email, password }) => {
 };
 
 export const signOutUser = async () => {
-  return await signOut();
+  return await signOut(auth);
 };
 
 // like a socket it keep on listening to the authentication activity
