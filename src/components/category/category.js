@@ -1,13 +1,14 @@
-import Title from "antd/lib/skeleton/Title";
-import React, { useContext } from "react";
-import { Fragment } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { ProductContext } from "../../context/products.context";
+import { selectCategory } from "../../store/category-reducer/category-selector";
 import ProductCard from "../product-card/product-card";
 import "./category.scss";
 
 const Category = () => {
-  const { categioriesMap } = useContext(ProductContext);
+  // const { categioriesMap } = useContext(ProductContext);
+  const categioriesMap = useSelector(selectCategory);
+  console.log(categioriesMap);
   const { category } = useParams();
   return (
     <>
