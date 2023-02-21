@@ -12,7 +12,10 @@ import {
 } from "./utils/firebase/firebase";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./store/user-reducer/user.action";
-import { setCategoryMap } from "./store/category-reducer/category-action";
+import {
+  fetchCategoryAsync,
+  setCategoryMap,
+} from "./store/category-reducer/category-action";
 
 const App = () => {
   const disptach = useDispatch();
@@ -28,12 +31,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    //   addCollectionAndDocuments("categories", SHOP_DATA);
-    const getCategoryMap = async () => {
-      const categoryMap = await getCategoriesAndDocuments();
-      disptach(setCategoryMap(categoryMap));
-    };
-    getCategoryMap();
+    disptach(fetchCategoryAsync());
   }, []);
 
   return (

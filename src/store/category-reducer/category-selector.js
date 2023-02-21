@@ -1,8 +1,9 @@
-import { createSelector } from "reselect"
-
+import { createSelector } from "reselect";
 
 export const selectCategory = (state) => state?.categories?.categoriesMap;
 
+export const selectCategoryLoading = (state) =>
+  state?.categories?.isCategoryLoading;
 
 //select the reducer
 
