@@ -1,11 +1,37 @@
 import React, { useContext } from "react";
-import { CartContext } from "../../context/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  decreaseProductCount,
+  increaseProductCount,
+  removedProduct,
+} from "../../store/cart-reducer/cart-action";
+import { selectCartItem } from "../../store/cart-reducer/cart-selector";
 import "./checkout-item.scss";
 
 const CheckoutItem = ({ cartItem }) => {
   const { name, quantity, price, imageUrl } = cartItem;
-  const { decreaseProductCount, increaseProductCount, removedProduct } =
-    useContext(CartContext);
+  // const { decreaseProductCount, increaseProductCount, removedProduct } =
+  //   useContext(CartContext);
+
+  const disptach = useDispatch();
+
+  const cartItems = useSelector(selectCartItem);
+
+  const decreaseProductCountHandler = (cartItem) => {
+    if (cartItem.quantity > 1) {
+      disptach(decreaseProductCount(cartItems, cartItem));
+    } else {
+      disptach(removedProduct(cartItems, cartItem));
+    }
+  };
+
+  const increaseProductCountHandler = (cartItem) =>
+    disptach(increaseProductCount(cartItems, cartItem));
+
+  const removedProductHandler = (cartItem) => {
+    disptach(removedProduct(cartItems, cartItem));
+  };
+
   return (
     <div className="checkout-item-container">
       <div className="image-container">
@@ -16,7 +42,7 @@ const CheckoutItem = ({ cartItem }) => {
         <div
           className="arrow"
           onClick={() => {
-            decreaseProductCount(cartItem);
+            decreaseProductCountHandler(cartItem);
           }}
         >
           &#10094;
@@ -25,14 +51,17 @@ const CheckoutItem = ({ cartItem }) => {
         <div
           className="arrow"
           onClick={() => {
-            increaseProductCount(cartItem);
+            increaseProductCountHandler(cartItem);
           }}
         >
           &#10095;
         </div>
       </span>
       <span className="price">{price * quantity}</span>
-      <div className="remove-button" onClick={() => removedProduct(cartItem)}>
+      <div
+        className="remove-button"
+        onClick={() => removedProductHandler(cartItem)}
+      >
         &#10005;
       </div>
     </div>
