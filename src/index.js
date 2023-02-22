@@ -9,6 +9,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store, persistor } from "./store/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { Elements } from "@stripe/react-stripe-js";
+import { stripePromise } from "./utils/stripe/stripe";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,7 +20,9 @@ ReactDOM.render(
           {/* <UserProvider> */}
           {/* <ProductsProvider> */}
           {/* <CartProvider> */}
+          {/* <Elements stripe={stripePromise}> */}
           <App />
+          {/* </Elements> */}
           {/* </CartProvider> */}
           {/* </ProductsProvider> */}
           {/* </UserProvider> */}

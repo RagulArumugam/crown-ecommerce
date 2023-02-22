@@ -14,13 +14,15 @@ export const fetchCategorySuccess = (categories) =>
 export const fetchCategoryFail = (err) =>
   createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, err);
 
-export const fetchCategoryAsync = () => async (disptach) => {
-  disptach(fetchCategoryStart());
-  try {
-    const categoryMap = await getCategoriesAndDocuments();
-    disptach(fetchCategorySuccess(categoryMap));
-    // disptach();
-  } catch (err) {
-    disptach(fetchCategoryFail(err));
-  }
-};
+//on disptaching the funtion it will return the async funtion which uses the disptach method
+//to call the funtions we needed
+// export const fetchCategoryAsync = () => async (disptach) => {
+//   disptach(fetchCategoryStart());
+//   try {
+//     const categoryMap = await getCategoriesAndDocuments();
+//     disptach(fetchCategorySuccess(categoryMap));
+//     // disptach();
+//   } catch (err) {
+//     disptach(fetchCategoryFail(err));
+//   }
+// };

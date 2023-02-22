@@ -7,15 +7,11 @@ import Shop from "./routes/shop/shop";
 import Checkout from "./routes/checkout/checkout";
 import {
   createUserDocumentFromAuth,
-  getCategoriesAndDocuments,
   onAuthStateChangedListener,
 } from "./utils/firebase/firebase";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./store/user-reducer/user.action";
-import {
-  fetchCategoryAsync,
-  setCategoryMap,
-} from "./store/category-reducer/category-action";
+import { fetchCategoryStart } from "./store/category-reducer/category-action";
 
 const App = () => {
   const disptach = useDispatch();
@@ -31,7 +27,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    disptach(fetchCategoryAsync());
+    disptach(fetchCategoryStart());
   }, []);
 
   return (
